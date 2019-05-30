@@ -1,0 +1,174 @@
+9시~10시
+
+도커 복습
+container commit하면 image
+image run하면 container
+image push해서 올리고 pull해서 받는다.
+
+docker-composer up down으로 쉽게 할 수 있따.
+YAML
+run stop rm rm-f 의 주기
+
+attach 로 컨테이너 내부로 들어갈 수 있음
+
+초기상태로 돌리기
+docker container rm -f $(docker container ls -q) 컨테이너 전체 삭제
+docker container image rm $(docker image ls -q) 이미지 전체 삭제
+docker system prune
+
+docker-compose up --scale echo=10 하면 10개가 동시에 올라가고
+docker-compose logs하면 기록을 볼 수 있다.
+docker-compose stop 하면 전부 끔.
+docker-compose pause 일시정지(서스펜드)
+docker-compose unpause 일시정지 해제
+docker-compose restart 다시 시작.
+docker-compose down은 이미지까지 다 지우는 것.
+
+docker-compose 를 쓸 때 주의해야할 사항
+1) 버전
+
+docker-compose version으로 버전이 3.x대로 나오는지 봐야함.
+
+2) yaml파일 오류
+
+-1 tab키 썼을 때
+-2 들여쓰기 했을 때
+-3 
+echo : 
+ image : 했을때는 이미지명이 들어가야함.
+build : 했을 때는 dockerfile의 path가 들어가야함.
+
+3) docker-compose stop (포그라운드를 스탑하면 멈추는게 나오지만)
+docker-compose restart (백그라운드상에서 리스타트되므로 2중 3중으로 켜져서 문제가 생긴다.)
+
+
+
+도커 이미지 생성
+
+컨테이너로부터 이미지를 작성하려면 docker container commit 명령을 사용함.
+docker container commit --help
+
+echo 이미지를 이용하여 컨테이너를 실행함.
+docker container run -d -p 9090:8080 echo
+
+호스트 머신에 main.go 내용을 수정.
+package main
+
+import(
+	"fmt"
+	"log"
+	"net/http"
+)
+func main() {
+	http.HandleFunc("/", func(w http.ResponseWrite, r *http.Request) {
+	log.Println("received request")
+	fmt.Fprintf(w, "Hello Docker ^..^ !!")
+	})
+
+	log.Println("start server")
+	server := &http.Server{Addr: ":8080"}
+	if err := server.ListenAndServe(); err != nil {
+	}
+}
+
+수정한 main.go 파일을 컨테이너로 복사하고, 컨테이너를 중지 후 재기동합니다.
+
+docker container cp ./main.go (컨테이너아이디):/echo/main.go
+docker container stop (컨테이너아이디)
+docker container restart (컨테이너아이디)
+
+호스트 머신에서 브라우저를 통해서 접근했을 때 변경된 내용이 출력되는 것을 확인합니다. docker container commit 명령을 이용해서 이미지를 생성합니다.
+
+docker container commit --author "michaelparkerr" --message "my echo web" (컨테이너아이디) michaelparkerr/hellodocker:latest
+
+docker image inspect micahelparkerr/hellodocker:latest
+
+docker login
+username (입력)
+passwrod
+
+docker image push michaelparkerr/echo:latest
+
+
+취약점 공부할 수 있도록 도와주는 것들
+
+web goat
+
+https://www.owasp.org/index.php/OWASP_Juice_Shop_Project
+
+docker pull bkimminich/juice-shop 으로 juice_shop을 가져와서 이미지로 사용가능.
+그래서 docker를 꼭 활용할 줄 알아야함.
+
+
+docker network ls로 어떤 네트워크가 있는지 확인 가능.
+
+
+
+
+data volume container 
+
+docker container run -v /root/test:/usr/share/nginx/html -p 8888:80 -d nginx:latest 로 공유 폴더를 만들 수 있다.
+docker container ls
+docker container exec (컨테이너id) cat /usr/share/nginx/html/a-ban/hello.html로 확인
+
+
+
+data container
+
+홈디텍터리에서
+mkdir container
+cd container
+gedit Dockerfile
+
+내용
+FROM busybox //꼭 필요한 기능만 모아둬서 베이스이미지 생성에 많이 쓰임. 최소한의 운영체제 기능만 제공하는 경량 운영체제. 경량 컨테이너.
+
+VOLUME /var/lib/mysql
+
+cmd ("bin/true")
+
+
+docker image build -t example/mysql-data:latest .
+docker container run -d --name mysql-data example/mysql-data:latest
+docker container ls // bin/true여서 한번 돌고 꺼지기 때문에 결과가 안 나오는것.
+docker container run -d --rm --name mysql \ //다음줄까지 명령어가 지속됨
+-e "MYSQL_ALLOW_EMPTY_PASSWORD=yes" \
+-e "MYSQL_DATABASE=volume_test" \
+-e "MYSQL_USER=example" \
+-e "MYSQL_PASSWORD=example" \
+--volumes-from mysql-data \
+mysql:5.7
+
+환경변수를 넘겨줄 때 -e를 사용한다.
+
+docker container exec -it mysql mysql -u root -p volume_test  ///왼쪽은 mysql 명령어 그 뒤는 mysql에 붙는 명령어들.
+password치라고 나옴.
+enter치면 mysql에 들어가짐.
+
+create table user(
+id int primary key auto_increment,
+name varchar(255)
+) engine=innodb default charset=utf8mb4 collate utf8mb4_unicode_ci;
+
+insert into user (name) values ('aaaa'), ('bbbb'), ('cccc');
+select * from user;
+
+
+이제 터미널 1개를 더 띄워서 mysql container을 죽인다.
+
+docker container stop mysql
+docker container ls -a
+docker container run -d --rm --name mysql \ //다음줄까지 명령어가 지속됨
+-e "MYSQL_ALLOW_EMPTY_PASSWORD=yes" \
+-e "MYSQL_DATABASE=volume_test" \
+-e "MYSQL_USER=example" \
+-e "MYSQL_PASSWORD=example" \
+--volumes-from mysql-data \
+mysql:5.7
+
+docker container exec -it mysql mysql -u root -p volume_test
+password 엔터 치고 다시 들어가면
+select * from user;
+다시 남아있는 것을 확인할 수 있다.
+### mysql 컨테이너를 다시 시작했을 때 이전에 생성해 둔 테이블과 데이터가 복원되는 것을 확인
+

@@ -1,0 +1,22 @@
+형식 문자열 처리 함수
+printf "%s x %s = %s" $i $j `expr $i \* $j`
+
+%s %n %h 와 같은 형식 문자열 처리 함수는 차례대로 문자를 입력한다.
+
+99단 가로 출력
+
+#!/bin/bash
+
+# for (( i = 2 ; i < 10 ; i ++ ))
+for j in $(seq 1 9)
+do
+	for i in {1..9}
+	do
+		printf "%s x %s = %s\t" $i $j `expr $i \* $j`
+		if [ $i = 9 ]
+		then
+		printf "\n"
+		fi
+	done
+done
+exit 0

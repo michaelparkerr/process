@@ -1,0 +1,42 @@
+9시~10시
+
+우분투 책 설치 과정 따라가기
+VMware Tools 설치
+설치 오류 시 CD-ROM Iso 이미지를 C:\Program Files (x86)\VMware\VMware Workstation\linux.iso 로 지정
+
+VM->Reinstall VMware Tools
+
+# cd /media/root/VMware\ Tools/
+# ls 
+# cp VMwareTools-10.2.5-8068393.tar.gz /tmp/
+# cd /tmp
+# ls
+# tar -xvf VMwareTools-10.2.5-8068393.tar.gz 
+# ls
+# cd vmware-tools-distrib
+# ls
+# ./vmware-install.pl
+첫번째 물음에 대해서 yes를 입력하고 나머지는 Enter
+설치가 완료되면 reboot
+
+13시~14시
+
+server(b)에서
+pwd를 치면 사용자가 있는 홈디렉토리를 보여줌
+homedirectory 는
+cat /etc/passwd에서 바꿔줄 수 있다.
+
+server terminal 에서 vim실행 시키고 :W enter하면 written 저장하는 것이다.
+
+ens32는 네트워크 드라이버 이름. 예전에는 eth0, eth1 ... 사용했는데
+ubuntu16.04부터 ens라는 이름으로 바뀜.
+
+ubuntu는 FAT32 방식의 USB만 인식할 수 있다.
+
+실습은 되는데 만족하는게 아니라 왜 그렇게 뜨는지 생각해봐야 함.
+
+/sbin에 shutdown이 있는데
+권한을 확인해보면
+lrwxrwxrwx이다.
+그래서 루트에서 셧다운 명령을 내려도 일반 사용자가 해제할 수 있다.
+chmod 770 shutdown

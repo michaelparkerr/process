@@ -1,0 +1,474 @@
+09시~10시
+
+HTTP : 통신규약
+HTML : 서버가 클라이언트에게 정보를 건네주는 형식
+CSS : 예쁘게 보이기 위한 스타일
+java script : 기능을 가미하기 위한것
+
+
+HTML + CSS + JAVA SCRIPT(동적 동작 언어)
+클라이언트 사이드 기술(프론트 엔드 기술)
+
+
+정적인 페이지는 시간과 요청대상에 따라 변하지 않음(정적인 자원)
+
+
+CGI(COMMON GATEWAY INTERFACE) : 요청에 맞는 결과를 만들어줄 수 있게 하는 기술
+(조건에 맞는 것 요청함)(동적 처리)(어렵다는 것이 단점)
+예) ASP, Sevlet/JSP, PHP 
+
+요청이 들어오면 DB와 CGI가 상호 작용하여 결과를 주는 기술(백 엔드 기술)
+
+풀스택(프론트엔드+백엔드)
+
+
+예전에는 고성능 서버가 모든걸 처리해야했음(비싸고, 저성능) 그래서 CGI기술(백엔드기술) 발달.
+지금은 하드웨어가 고사양 저렴해짐. 다양해짐. 그래서 프론트엔드 기술 발달. 서버는 데이터 공급만 하면 됨.
+
+Java Script가 Frame Work라는 이름을 달고 나오기 시작함.
+이전에는 단순해서 개발자들이 경시함. 무시하기 쉽지만 다루기 쉬움.
+
+jQuery라는 이름의 라이브러리가 나오며 각광받기 시작.
+이로 말미 암아 Web에서 엑셀과 같은 기능을 구현할 수 있게 해줌.
+
+node.js(프론트 엔드보다 백엔드에 가까움)가 나오면서 또 하나의 새로운 전환점이 생김.
+브라우저 내에서 동적인 기능을 제공함.
+
+GETH 나 MONGO DB와 같은 CLI(COMMAND LINE INTERFACE↔GUI(GRAPHIC USER INTERFACE)) 환경을 제공할 수 있게 해줌
+GETH도 CONSOLE을 띄우면 java script가 뜸. 그만큼 범용성이 좋음.
+Multi Device & Screen
+
+---
+
+10시~11시
+
+Multi device 환경을 지원하기 위해 가장 효율적인 것은 Sever로부터 데이터만 받고 받은 데이터로 처리해서 보여주는 것이다.
+
+Linux를 배우는 이유?
+다른 사람 것을 가져와서 쓸 수 있는 능력이 필요해짐.(협업이 필요, 심지어는 운영체제까지)
+
+Linux 기반 운영체제에서 Ubuntu와 같은 서비스가 많아짐.
+안드로이드도 Linux에서 나온 것.(아이폰 대항마로 나오게 된 안드로이드)
+속도와 쉽게 쓸 수 있게 하는 것이 전략(보안은 2순위)
+
+데이터통신의 이해(010010에 대한 이해를 도와줌) 책 읽어보기
+
+가상화 단계에 들어가면 Virtual Machine에 대해 헷갈리기 때문에 도와주기 위함.
+Virtual Machine : 남는 Hardware Resource를 쪼개서 사용하기 위함.
+새로운 운영체제를 Host에 깔아서 쓰는 등.
+Docker
+MSA(Micro Service Aricitecture) : 기존에 뭉쳐서 구동되던 것을 세부적으로 쪼개는 것.
+WEB -> WAS -> DB 과정을 분할함.
+한 번에 자신이 모르는 것을 다 올려서 서버에 올리면 쉬움(장점)
+유지보수와 변경이 어려움(단점)
+
+최근 트렌드는 서비스가 복잡 다양해지고 있어서 변경이 수시로 발생하기 때문에 효율성이 필요함.
+따라서 개발할 때 애자일(방법론)이 필요함.(변경을 쉽게 적용하기 위해서)
+Source 관리, 형상 관리하기 위해서 GIT이 나옴.(소스코드의 변경을 쉽게 관리하기 위해서)
+Jenkis와 같은 CI(지속 가능한 인터페이스) 도구
+복잡한 변경 및 절차 과정은 시간을 많이 소모하게 됨.(반복적이고 주기적인 과정을 자동적으로 해결하는 것을 도와주기 위해)
+
+프론트엔드 개발이나 Java f/w에 관심있는 사람은 ES(ECMA Script)6에 관심을 가지면 됨. JAVA나 ES6나 비슷함. 
+관심있다면 내용이 바뀌기 전에 빠르게 도전.
+
+웹보안이나 시큐어 코딩은 백엔드 쪽 중점.(Java 개발 시 주의 사항들)
+공공 프로젝트에 관심 있는 사람은 취약점 제거 시큐어코딩에 관심 가지면 좋음.
+(정보 통신보호법 45조 2항 사전점검을 반드시 수행해야함. 프로젝트 구현 설계 및 테스트 단계까지)
+
+블록체인 무결성 데이터를 공유하는데 초점을 둠. 기밀성도 보장되야 함.
+
+본인이 프론트엔드인지 백엔드인지 고민해봐야함.(개론이 마무리 되어가는 시점에)
+디자이너 -> 퍼블리셔 -> 개발자
+
+클라이언트가 다양해짐에 따라 디자이너와 개발자의 요구사항을 종합하여 코드를 짜는 사람들이 퍼블리셔.
+
+WEB SERVER ->WAS->DB
+
+WEB SERVER는 정적인 자원
+가장 처음 받는 것이 WEB SERVER(HTML,CSS,JavaScript,Inaae)
+동적인 부분(jsp,asp,php)과 같은 Servlet들은 WAS(Web Application Server)로 보내어짐.
+그 뒤에 DB로 보내어짐.
+
+백엔드에 관심이 있는 사람들은 Spring과 전자정부 F/W를 꼭 해야됨.
+Struts는 1.x대에서는 어느정도 썼지만 2.x대에서는 거의 쓰지 않고 민간 쪽에서는 Spring Frame Work을 많이 씀.
+우리나라에서 정부에서 만들어준 전자정부 Frame Work를 쓰면 됨.
+
+가장 쉽게 이런부분을 볼 수 있는 것은 책 ' 코드로 배우는 스프링 웹 프로젝트 개정판'이다.(가장 쉽게 잘 되어있음.)
+
+DB 관리는 Oracle,MS-SQL을 많이 쓰고, 소규모 프로젝트는 보통 MySQL, MariaDB을 사용.
+
+백엔드 개발자로서 여기서 좀 더 욕심이 생기면 Inaae, HTML, CSS, Java Script와 같은 프론트 엔드에 관심을 가짐.
+Bootstrap(개발자들이 가장 이해하기 좋고 쓰기 좋음) 여기에 React까지 하면 금상첨화
+
+백엔드개발자(프론트 20~30% 백 7~80%)
+
+
+WEB 2.0
+
+기존에 있던 요청과 응답이 아니라 (화면을 완전히 전환하지 않고) 데이터만 바꾸는 것.
+ajax 기술을 이용해서 데이터만 받아온다. 여기서 Javascript의 DOM(Document Object Management)를 이용한다.
+예전에는 XML을 이용하여 데이터를 활용했는데 최근에는 json을 사용하는 추세이다.
+
+----
+
+11시~12시
+
+커뮤니케이션 오류의 원인은 용어차이이다.
+
+SI(System Intergration) 프로젝트를 처음 시작할 때 용어 사전부터 만듬.
+
+다른 사람에게 설명할 수 있을 때까지 학습하자.
+
+https://bit.ly/2IC2KSS
+
+단축 URL bit.ly
+
+URI(Unique Resource Identify) 아래 2개는 URI 범주에 들어감.
+URL(Unique Resource Location)
+URN(Unique Resouce Name)
+
+URL의 문제점 : 외우기 어렵다. 쉽게 문장으로 만들어야만 사람들이 접근하기 쉬움.
+야후가 사람들의 Static한 정보들의 Index를 제공해줌.(Yellow Book Service, Directory Service)
+
+URN의 문제점 : 동일한 이름이 여러개 있을 수 있음. 구현하기 어려움.
+
+http(스킴,프로토콜/문서의 적용 규칙)
+www.naver.com(도메인,호스트)
+(생략)(포트번호가 나옴)(http는 80이 기본포트)(https는 443)
+/data/(directory,경로)
+12321(file)
+
+Server Side Script (SSS) : asp,jsp,php와 같은 언어로 만들어진 것.
+
+abc.jsp와 같은 것을 처리하기 위한 파라미터가 필요함.
+그래서 abc.jsp?id=()&pw=() 와 같은 형식을 사용.
+id이하 ~를 요청 파라미터(인자)라고 부름.
+
+https://(스킴)
+search.naver.com/(네이버의 여러 서버중 검색 서버 호스트)
+search.naver?sm=top_hty&fbm=1&ie=utf8&query=%ED%99%8D%EA%B8%B8%EB%8F%99
+
+
+Cookie(94년도 넷스케이프에서 만든 개념)
+
+http에는 2가지 특징이 있음. 1.요청/응답 구조 2.Stateless(상태 관리를 하지 않음)
+이렇게 설계한 이유는 처음 알파넷이 설계될 때 텍스트만 가득한 문서들이었기 때문에 필요한 정보를 받고 받고나면 끊으면 됐었음.
+
+나중에는 WebSocket과 같은 서버와 양방향 1:1소통이 가능한 것이 생김 (HTML5에서부터)(채팅,HTS)
+
+돈받고 제공해야하는 서비스는 인증(돈낸놈과 안낸놈 구분)이 필요함. 또한, 인가가 필요함.
+그래서 생긴 것이 Cookie.(헨델과 그레텔 동화에서 나온 이름)(자취)(쉽게 노출되고 쉽게 위배될 수 있다는 문제점이 있음.)
+
+Cookie를 보완하기 위해서 나온 개념이 Session
+http는 Stateless이기 때문에 자체적으로 Session을 제공하지 않고 개발자가 따로 개발해야함.
+
+Session을 잘못 통제하면 그 사람인 척 행동하여 권한을 행사할 수 있게 됨.
+
+
+---
+
+버츄얼박스, 우분투 설치
+
+1) VirtualBox 다운로드 후 설치
+https://www.virtualbox.org/wiki/Downloads
+VirtualBox 6.0.6 platform packages 
+
+
+2) Ubuntu 18.04.2 LTS 다운로드 → 설치는 함께
+https://www.ubuntu.com/download/desktop 
+
+
+3) SecureCoding LAB 다운로드
+https://drive.google.com/file/d/0B6O3fRoAooHJeU1OT2kwdjVPS0U/view?usp=sharing
+다운로드 완료 후 실행 
+실행 시 Windows Defender 경고가 뜨는 경우 무시하고 실행
+반드시 압축해제 폴더를 C:\로 지정
+
+---
+
+13시~14시
+
+자기소개 시간
+
+14시~15시
+
+Vmware 또는 Virtual box 설치하여 가상환경 구축
+
+일반적으로 개발할 때 IDE(통합 개발 환경)를 사용.
+Eclipse(IBM 社 무료), Inteli J(JetBrain 社)(한번 써보면 다른건 못쓴다,대학생은 무료), Sublime Text, VSC(비쥬얼스튜디오)
+
+Eclipse는 Java EE Perspective(관점)이다.
+EE란 Enterprise 환경에서 개발할 때 유용한 도구들로 구성되어 있다는 얘기.
+Quantum DB는 Client Tool.
+
+Spring 기반
+
+openeg라는 서비스에 접속하여 WebContent-> WEB-INF(중요, 독특)에 접속하면 이것이 Web Document Root, Web Root이다.
+WEB-INF Directory는 외부에서 Access할 수 없다.
+보통 설치하면 Directory는 다 만들어주고 거기에 코드만 넣으면 되도록 프로그램이 제작된다.(개발 새발 만들어지지 않도록)
+
+
+Servers에서 Tomcat v6.0 Server를 누르고 벌레모양을 누르면 log가 올라오는데 이것이 Web Application Server를 구동시킨 것이다.
+Tomcat v6.0 Server 좌측 화살표를 누르면 openeg, SwingSet, WebGoat가 서비스될 것이라는 것을 보여준다.
+
+더블클릭하면 나오는 것은 어떻게 서비스할지에 대한 설정창이 나온다. 이것이 web.xml이다.
+서버를 구동할때는 web.xml을 본뒤 port를 본다.(HTTP/1.1의 port번호는 8080)
+C:/SecureCoding/어딘가에 Tomcat이라는 서버가 돌고 있다는 것이다.
+이 서버가 구동할 때 URL에 Port번호가 생략되거나 명시되는데(http://~~~~~:포트/)
+~~~자리에 들어갈 수 있는 것은 localhost(127.0.0.1),or실제해당PC의 IP주소(~~~.~.~.~)
+즉, 서버 구동 후 http://localhost:8080/openeg or http://PC의 IP:8080/openeg 입력하면 서버 주소가 나온다.
+같은 네트워크에 있으면 같은 IP주소를 입력해도 접속된다.
+
+ex) http://70.12.50.54:8080/openeg
+
+여기서 openeg는 directory이다.
+directory에 응답을 요청하면 서버는 어떻게 반응할까?
+1) default page를 먼저 찾는다.
+
+Eclipse에서 Ctrl+Shift+R를 누르면 나오는 창에 web.xml을 입력한다. 여기서 openeg에 있는 web.xml을 연다.
+여기서 나오는 Welcome file list가 Default page이다. 여기 나오는 Welcome list에 나오는 파일을 다 찾아보고 없으면 다음 단계로 넘어간다.
+
+2)directory listing option을 찾는다.
+
+directory listing이란 intitle indexof로 검색을 하면 해당하는 타이틀이 나오는 것을 검색해준다.
+여기서 나오는 파일들은 왠만해서 노출되면 안되는 것들(내부구성들)이다.
+
+ex) intitle indexof 이력서
+
+directory listing은 반드시 비활성화 해둬야한다.(보안에 취약하므로)
+
+3)못찾았다 를 return함
+
+404 Not Found를 Client에게 보냄
+
+404 Not Found를 그냥 노출시키면 정보가 노출될 수 있으므로 Customizing해야된다.
+
+
+---
+
+15시~16시
+
+tag를 화면에 보여주기 위한 목적이 아니라 데이터를 어떻게 표현할 것인가에 대한 문제로 생각해야한다.
+
+스타일에만 집착하는 것에서 벗어나기 위해 symentic web HTML5가 나옴.
+
+예전에는 모두 div를 썼었는데, 최근에는 메뉴에는 aside, 내용에는 article과 같이 의미에 맞는 이름을 부여하기 시작함.
+
+
+http에서 있으면서 줄 때는 200 ok가 날라오고, 없을 때는 404 Not Found가 날라온다.
+
+복잡해지면서 요청한 것을 제외하고 다른 것을 줘야하는 경우가 생김.
+
+Login, ID와 Password의 일치를 확인하기 위함. 두 정보를 입력하여 Login 페이지를 호출한뒤 일치하는 정보가 없으면, 페이지는 있으므로 200ok+일치하는정보없다는msg가 날라옴.
+일치하는 정보가 있으면 200ok나 404not found말고 다른 페이지를 보여줘야 함.(규칙에 없는 상황)(동적처리를 할때 새로운 페이지로의 전이가 필요)
+그런 상황에서 3xx(300번대)메시지 Redirect foward가 나온다.
+
+ex) 응답헤더 (302 Move Temporalily Location:main) 으로 main페이지를 서버에 요청하여 main page로 연결한다.(원래 요청을 다른 페이지로 바꿔서 전달)
+
+응답헤더로 redirect를 요청하는 방법이 <meta>태그를 이용하는 방법도 있고, java script에서 location href로 요청할수도있다.
+응답헤더로 정확하게 하는 방법이 제일 좋음.
+
+본문이 내려오면 parsing하는데, content="0;은 뒤의 요청을 바로 실행하라는 것이다.
+
+_____/openeg/login.do
+
+.do라는 것은 dispatcher로 넘긴다는 것이다.
+
+
+Ctrl+shift+R에 loginController.java 파일을 열어보면 받은 id pw를 비교하여 있으면~ 없으면~로 응답한다.는 것을 알 수 있다.
+
+
+그렇다면 secure coding은 무엇일까?
+
+client 와 server 사이의 인터넷이 있는 상황에서 server측이 갖고 있는 fire wall(port번호나 protocol을 통해 근원적으로 차단)
+Firewall이 허용한 포트를 파라미터 조작으로 뚫고 들어오는 사례를 막기 위해 패턴을 통해 막는 Web Application FireWall(WAF)이 등장함.
+IDS/IPS 는 웹 방화벽과 비슷하지만, 위험요소를 감지(IDS), 차단(IPS)하는 역할이다.
+전체 침해사례의 75~95%가 login에서 뚫린다. login 기능을 잘 만들어야 한다.
+
+국내 KT의 고객정보조회 (search.jsp)서비스가 있었다. 직원 페이지에서 고객 ID를 넣고 조회버튼을 누르면 페이지를 호출할 수 있었다.
+1)인증여부를 확인하고 
+2)처리를 위한 값이 있는지를 봄 
+3)이 값을 가지고 DB를 뒤짐(Select) 
+4) 그 값을 Client로 Return함
+4-1)일치하는 고객정보가 있으면 고객정보가 Return
+4-2)고객정보가 없으면 존재하지 않는다는 msg가 Return
+
+단순히 이렇게 하면 취약함. '인가'과정이 빠졌기 때문. 
+Authentication(인증)(수단을 이용하여 인물을 확인), Authorization(인가)(인증받은 사용자가 행위를 할때 권한을 확인하는 역할)
+
+직원 A가 고객을 조회할 때 
+
+인가는 3가지 레이어를 통해 이루어짐
+
+1. 화면을 통한 인가
+(권한 없는 사용자에게 기능을 제공하지 않는 것)
+2. 기능을 통한 인가
+(삭제 버튼이 없다고해서 삭제 요청을 할 수 없는가? 주소창에 쳐서 할 수 있다.)
+3. 데이터를 통한 인가
+(삭제 권한이 있다고 하더라도 데이터의 범위가 한정되어야함.)
+
+고객정보 무작위(1,2,3...) 대입 공격으로 86만건을 빼감.
+
+한번에 86만건을 하면 IDS에 감지되어서 차단됨. 감지되지 않도록 1초에 1~2건정도로 한정.
+
+기존 보안체계는 비용이 많이 들고 한계가 있기 때문에 코딩을 잘해서 login단계에서 차단하는 것이 중요하다.(보안코딩의 중요성)
+
+MDN web docs, 생활코딩에 가면 여러가지를 가르쳐주므로 들어가볼 것!(끝까지해보기)
+
+16시~17시
+
+개발보안의 중요성
+
+String id = request.getParameter("id");
+
+if(id != null && id.equals("hong")){
+}
+이런식으로 코딩을 짤 수 있음. 파라미터로 넘어온 id값이 홍과 일치하는가
+
+getParameter는 null값을 반환할 수 있기 때문에 쓸 수 없음.(아무것도 없기 때문에 비교할 수 없음)
+
+그렇기 때문에 null 여부를 체크해야함.
+
+if ("hong .equals(id)) {...} 은 참조가 hong을 기준으로 이루어지기 때문에 문제가 없다.
+
+그렇기 때문에 리터럴을 사용한다. 라는 것이 사람들이 약속한 시큐어 코딩.
+
+https://wiki.sei.cmu.edu/confluence/display/java 에 규약이 적혀있음.
+
+해당 내용을 담은 The CERT Oracle Secure Coding Standard for Java provides rules for Java Platform Standard Edition 6 and Java SE 7.
+ 
+ Java Coding Guidelines: 75 Recommendations for Reliable and Secure Programs provides guidelines, recommendations, and examples to enable the creation of reliable, robust, fast, maintainable, and secure code.
+
+두 권의 책이 도움이 되고 한글 번역서도 있지만, 문장이 매끄럽지 않아서 원서를 같이 봐야한다.
+
+https://wiki.sei.cmu.edu/confluence/display/java
+https://developer.mozilla.org/ko/
+https://opentutorials.org/course/1/
+http://www.kisa.or.kr/public/laws/laws3.jsp
+소프트웨어 개발 보안 가이드
+JAVA 시큐어코딩 가이드
+C 시큐어코딩 가이드
+Android-JAVA 시큐어코딩 가이드를 꼭 참고하여 국내 적용 현황을 알아야함.
+
+WEB2.0강의+블록체인강의 돈텝스콧 들어보기
+
+서버 내부 데이터베이스로 파라미터를 요청하고, 그 파라미터가 데이터 처리에 사용된다.
+이것이 그대로 사용될 때의 문제점
+
+1. 그대로 사용되는지를 확인
+
+a' , b' 으로 홑따옴표를 하나 더 찍어본다. 'a'' 식으로 ''두개가 찍힌다면 '하나로 인식하는 경우가 있다.
+
+나온 사이트에서 해커들은 정보를 찾는다
+
+springframewrok 라는 문자 -> springframework로 구성된 사이트이므로 해당 기술의 취약점으로 공격할 수 있다.
+파일 경로가 나온다.
+jdbc로 연결을 하고 있고
+MySQL을 사용하고 있지 않을까? 유추
+ibatis frame work를 사용하고 있구나
+오류가 난 부분은 b'''부분이구나
+해당 사이트는 내가 입력한 값이 전달되고 사용되는 가운데 아무런 수정이 이루어지지 않는구나
+
+a'#, b'#로 입력해본다. #은 뒤에 나오는 것을 생략하는 역할(주석처리)
+
+가입된 사용자ID가 아닙니다!가 나온다. 이 의미는 ID만 알면 로그인할 수 있다는 것이다.
+
+그러면 회원가입으로 가서 admin이라는 ID로 가입시도한다. 이미 존재하는 ID임을 알아내고 접속 시도해본다.
+
+admin 접속 완료.
+
+한줄 요약 : SQL injection 취약점을 이용한 인증과정 우회
+
+
+금융이나 국가 기관에 해킹 시도를 하면 안되는 것은
+해킹과 진단이 차이가 있기 때문이다. 진단은 사전 협의가 되어있고, 해킹은 협의가 되어있지 않음.
+네트워크단계에서 차단하면서 걸릴 수 있기 때문에 주의.(가상화나 기타 방법으로 시도)(선생님은 안하는 것을 추천)
+
+17시~18시
+
+Ibatis 
+
+ctrl+shift+r 로 검색해보면 login.xml 이 있음.
+
+기존에는 html로 요청하면 받는 정적인 과정이었지만,
+
+지금은 web was로 분개된다.
+
+dispatcher(안에서 분개시키는 역할, 이건 너가 처리해 이건 너가처리해)
+
+제일 많이 쓰는 것이 spring. 이것은 dispatcher sublet을 통해 넘어오면 spring이 controller(실제로 동작을 처리하는 놈)로 넘김.
+
+뒷단에서 발생하는 로직은 DAO(Data access object)(DB와 연동됨)로 넘겨버림.
+
+Data가 있는지 없는지는 DAO에 위임. Controller는 나온 결과로 방향만 정함.
+
+그 사이에 왔다갔다하는 data를 Form 또는 Value Object라고 한다.
+
+이것을 Form VO Model이라고 한다.
+
+예쁘게 만들어 놓는 Template에 Form VO Model에 있는 데이터가 삽입됨.
+
+'M'odel
+
+'V'iew(Server side script임. .jsp와같은)
+
+'C'ontroller
+
+아까봤던 로그인 페이지는 
+
+C:\SecureCoding\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\work\Catalina\localhost\openeg\org\apache\jsp\WEB_002dINF\board\login_jsp.java
+
+경로에 있음.
+
+해당 코드를 봤을 때, 가독성이 떨어지면 유지 보수가 힘들어진다.
+
+템플릿이 60~70%고 로직이 20~30%라면 
+
+java script를 가지고 방대한 어플리케이션을 만들고자할 때 java는 데이터 타입이 불분명하므로 빠르게 배워서 쉽게 쓰는것은 가능하지만
+큰 프로젝트를 진행할 때 발생하는 문제점이 많다.
+
+이것을 보완할 때 java의 특징을 살리면서 문제를 해결해야하므로 java의 기능을 구현하면서 문제를 해결하는 것은 복잡하므로
+새로운 무언가를 만든다. 여기서 Type이라는 것을 만든다. Type으로 문제를 전부 해결한 것을 쫙 정리해둔다.
+Type에 최적화된 코드를 가지고 java script를 만드는 것은 간단하다.
+이것을 transfer라고 한다. 이걸 time script, copy script라고 부른다.
+
+transfer를 통해 실행 환경에 맞게 바꿔줘서 실행되므로, 실행도 되고 개발도 된다.
+
+angular나 frame work를 할 때 java로 구현하는 것은 복잡하므로  type을 convert해서 java를 구현한다.
+
+html형태로 적어두고 그것을 전환하는 것이 훨씬 간단하다. 이것이 template이다.
+
+data에 access하는 것은 db와의 연동이 반드시 되는 것이고 이것이 connection이다. 그 뒤 Query하여 Result를 받는 것이다.
+
+Query는 a4용지 2~3장 넘어가는 길이일 수 있다. 이것을 삽입하면 지나치게 코딩이 길어지고 지저분해져서 가독성이 떨어진다.
+
+이 Query를 개발자보고 짜라고 하면 힘들고 시간 낭비이므로 개발자는 Query에 나온 결과만 받아오는데 집중.
+
+Query 짜는 사람은 Query 짜는 것에 집중.
+
+login.xml은 Query에서 호출한 것에대한 결과만 받아간다.
+
+logic 쪽에서는 결과만 받아가고 query문이 없어서 가독성이 향상된다.
+
+ORM Frame Work 또는 ORMapping 이라고 한다.
+
+대표적인 것이 iBatis, 구글이 베껴서 만든 것이 myBatis
+하이버네이트 등..
+
+ORM Frame Work는 로직과 쿼리를 분리하는 것이다.
+
+Query를 불러서 실행해야 한다. 이것을 실행할 때는 반드시 Query를 실행하는데 필요한 Parameter가 필요하다.
+
+이 Parameter 중 id와 password를 전달 받을 때 사용하는 것이 #userid# 또는 $userId$와 같이 #,$이다.
+
+이것을 #,$을 이용하여 Binding 했다고 표현한다.
+
+위에서 나온 a 는 $userId$에 매핑되었고 b는 $userPw$에 매핑되었다고 한다.
+
+$를 쓰면 전달된 값이 $ 사이에 그대로 들어간다. 홑따옴표, # 등이 그대로 삽입된다.
+
+반대로 #을 쓰면 ',#와 같은 결과에 영향을 줄 수 있는 문자를 안전한 문자로 변경한다.
+
+시큐어 코딩은 SQL injection을 막기 위해 외부로부터 전달되는 값을 바인딩할 때 $ 대신 #을 사용해야한다.
+
+해당 어플리케이션에서 개발자가 정한 값을 전달하는 경우는 가능하지만, 그외 다른 경우는 안된다.
