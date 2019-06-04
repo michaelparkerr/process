@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+function person(name,age,birthday){
+	this.name=name;
+    this.age=age;
+};
+var person1={
+name : "박신철",
+age : 27,
+tall : 177.7,
+ishansome : true,
+gender : "남",
+weight : null,
+family : ["남편","아이","엄마"],
+job : "utuber",
+salary : NaN,
+birthday : null
+};
+var person2={
+name : "전지현",
+age : 27,
+tall : 177.7,
+ishansome : true,
+gender : "남",
+weight : null,
+family : ["남편","아이","엄마"],
+job : "utuber",
+salary : NaN,
+birthday : null
+};
+document.write(person1);
+document.write(person2);
+var person3=new person("전도연",48,null);
+document.write(person3);
+</script>
+</body>
+</html>
+
