@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+
+    <body>
+        <script>
+           //switch
+           
+            var score;
+            var grade;
+
+            document.write("<h3>학점 판정</h3>");
+            score=prompt("성적을 입력하세요");
+            switch(parseInt(score/10)){
+                case 10,9:grade="A";break;
+                case 8:grade="B";break;
+                case 7:grade="C";break;
+                case 6:grade="D";break;
+                default:grade="F";
+            }
+            document.write("<hr>학점판정 결과:");
+            document.write(score+"("+grade+")");
+                //for
+
+                var sum=0;
+                for(var i=1; sum<=100000; i=i+1)
+                {
+                    sum=sum+i;
+
+                }
+                document.write(" <br>1부터 N까지의 합이 처음으로 100,000을 넘을 때")
+                document.write("N은 "+(i-1)+"이고, 합은 "+sum+"입니다.<br>");
+                
+
+
+                var sum1=0;
+                var k=1;
+                while(sum1<=100000)
+                {
+                    k=k+1;
+                    sum1=sum1+k;
+
+                }
+                document.write("1부터 N까지의 합이 처음으로 100,000을 넘을 때")
+                document.write("N은 "+(k-1)+"이고, 합은 "+sum1+"입니다.<br>");
+                
+                var sum2=0;
+                var j=1;
+                do{
+                    j=j+1;
+                    sum2=sum2+j;
+
+                }while(sum2<=100000)
+                document.write("1부터 N까지의 합이 처음으로 100,000을 넘을 때 ")
+                document.write("N은 "+(j-1)+"이고, 합은 "+sum2+"입니다.<br>");
+
+                //7의 배수 구하기
+                sum3=0; count=0;
+                for (l=1; l<=100; l=l+1){
+                    if(l%7==0){count++;
+                    continue;
+                    }
+                    sum3=sum3+l;
+
+                }
+                document.write("1~100사이의 7의 배수의 갯수:" + count+"<br>");
+                document.write("1~100사이의 7의 배수를 제외한 합:"+sum3);
+        </script>
+
+    </body>
+</html>

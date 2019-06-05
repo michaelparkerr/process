@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <script>
+            var str1="꽝 ! 다음을 기약하세요!";
+            var str2="당첨 ! 축하합니다! ";            
+         </script>
+               <style>
+                    div { width:50px; height:50px; border-radius:50%;
+                    display: inline-block;}
+                    img { width: 50px; height: 80px; float: left;}
+                    #b1 { background: red;}
+                    #b2 { background: green;}
+                    #b3 { background: blue;}
+                    #b4 { background: orange;}
+                    #b5 { background:skyblue;}
+                    </style>
+         <h4>1.MouseOver/MouseLeave 이벤트 처리</h4>
+         <img src="lightoff.png" 
+         onmouseover="this.src='lighton.png';"
+         onmouseleave="this.src='lightoff.png';" />
+          <br><br>
+         마우스가 전구 위에 있으면 켜지고, 벗어나면 꺼집니다.<hr>
+         <h4>2. MouseClick 이벤트 처리</h4>
+             경품 추천! 원하는 공을 선택하세요.<br><br>
+            <div id="b1" onclick="document.write(str1);"></div>
+            <div id="b2" onclick="document.write(str1);"></div>
+            <div id="b3" onclick="document.write(str1);"></div>
+            <div id="b4" onclick="document.write(str2);"></div>
+            <div id="b5" onclick="document.write(str1);"></div>
+        <hr>
+        <script>
+                var txt = "마우스가 전구 위에 있으면 켜지고, 벗어나면 꺼집니다.";         
+                var answer = confirm("어두워졌습니다. 전구를 켤까요 ?");
+                if (answer ==true) {
+                    document.write("<h3>전구 상태:On</h3>");
+                    document.write("<img src='lighton.png' />");
+                }
+                else {
+                    document.write("<h3>전구 상태 :off</h3>");
+                    document.write("<img src='lightoff.png' />");
+                }
+
+                var name = prompt("이름은 ?");
+                var kor = prompt("국어 시험 성적은?");
+                var math = prompt("수학 시험성적은?");
+                total = Number(kor) + Number(math);
+                avg = total/3;
+                document.write("<table border=1>");
+                document.write("<table border=1>");
+                document.write("<tr><td>이름</td><td>"+name+"</td></tr>");
+                document.write("<tr><td>국어</td><td>"+kor+"</td></tr>");
+                document.write("<tr><td>수학</td><td>"+math+"</td></tr>");
+                document.write("<tr><td>총점</td><td>"+total+"</td></tr>");
+                document.write("<tr><td>평균</td><td>"+avg+"</td></tr>");
+                document.write("</table>");
+                function question(){
+                let name = prompt("이름은 ?");
+                let kor = prompt("국어 시험 성적은?");
+                let math = prompt("수학 시험성적은?");
+                let str="<table border=1>"
+                +"<tr><td>이름</td><td>"+name+"</td></tr>"
+                +"<tr><td>국어</td><td>"+kor+"</td></tr>"
+                +"<tr><td>수학</td><td>"+math+"</td></tr>"
+                +"<tr><td>총점</td><td>"+total+"</td></tr>"
+                +"<tr><td>평균</td><td>"+avg+"</td></tr>"
+                +"</table>";
+                const el=document.getElementById("result");
+                el.innerHTML=str;
+                }
+                </script>
+                <button onclick="question()">질문</button>
+                <br><br>
+                <div id="result"></div>
+                <img src="lightoff.png"
+                onmouseover="this.src='lighton.png';"
+                onmouseleave="this.src='lightoff.png';"
+                /><br>
+                <button onclick="alert(txt)">전구 on/off 방법</button>
+            
+    </body>
+</html>

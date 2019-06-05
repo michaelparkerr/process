@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+
+    </head>
+
+    <body>
+        <script>
+        var student= new Array(Array('강민성', '컴공',88, 76),
+                         Array('김정아','수학',70,83),Array('신은수','행정',92,95),
+                         Array('이은준','물리',85,92),Array('조우진','건축',97,88),
+        );
+        document.write("<h2>성적 테이블</h2>");
+        document.write("<table border=1>");
+        document.write("<tr><td>이름</td><td>전공</td>"+"<td>중간</td><td>기말</td></tr>");
+        for (i=0; i<5; i++){
+            document.write("<tr>");
+            for (j=0;j<4; j++){
+                document.write("<td>"+student[i][j]+"</td>");
+
+            }
+            document.write("</tr>");
+        }
+        
+
+        
+        </script>
+
+
+    </body>
+</html>
